@@ -39,6 +39,28 @@ class Calendar(models.Model):
         return self.title
 
 #===============================================================================
+class EventRule(models.Model):
+    '''
+    An object which stores the options for the python-dateutil module
+    capable of generating a set of events
+
+    '''
+    calendar = models.ForeignKey(Calendar, related_name="rules")
+
+
+    #===========================================================================
+    class Meta:
+        verbose_name = _('event rule')
+        verbose_name_plural = _('event rules')
+        
+    #---------------------------------------------------------------------------
+    def __unicode__(self):
+        return "Event rule for %s" % self.calendar.title
+
+
+
+
+#===============================================================================
 class Note(models.Model):
     '''
     A generic model for adding simple, arbitrary notes to other models such as
