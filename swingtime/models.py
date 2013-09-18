@@ -9,6 +9,8 @@ from django.conf import settings
 
 from dateutil import rrule
 
+from fields import RRuleWeekdayField, RRuleWeekdayListField
+
 __all__ = (
     'Note',
     'EventType',
@@ -53,6 +55,8 @@ class EventRule(models.Model):
     until = models.DateTimeField()
     count = models.PositiveIntegerField()
     interval = models.PositiveIntegerField()
+    wkst = RRuleWeekdayField()
+    byweekday = RRuleWeekdayListField()
 
 
     #===========================================================================
