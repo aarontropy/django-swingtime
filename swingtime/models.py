@@ -38,6 +38,7 @@ class Calendar(models.Model):
     def __unicode__(self):
         return self.title
 
+
 #===============================================================================
 class EventRule(models.Model):
     '''
@@ -46,6 +47,12 @@ class EventRule(models.Model):
 
     '''
     calendar = models.ForeignKey(Calendar, related_name="rules")
+
+    freq = models.PositiveIntegerField()
+    dtstart = models.DateTimeField()
+    until = models.DateTimeField()
+    count = models.PositiveIntegerField()
+    interval = models.PositiveIntegerField()
 
 
     #===========================================================================
