@@ -18,6 +18,27 @@ __all__ = (
 )
 
 #===============================================================================
+class Calendar(models.Model):
+    '''
+    A container for events which can be attached to an arbitrary object
+
+    '''
+    title = models.CharField(_('title'), max_length=32)
+
+    content_type = models.ForeignKey(ContentType)
+    object_id = models.PositiveIntegerField()
+    content_object = generic.GenericForeignKey('content_type', 'object_id')
+
+    #===========================================================================
+    class Meta:
+        verbose_name = _('calendar')
+        verbose_name_plural = _('calendars')
+        
+    #---------------------------------------------------------------------------
+    def __unicode__(self):
+        return self.title
+
+#===============================================================================
 class Note(models.Model):
     '''
     A generic model for adding simple, arbitrary notes to other models such as
